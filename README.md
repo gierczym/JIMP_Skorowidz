@@ -1,0 +1,1 @@
+# JIMP_Skorowidz
