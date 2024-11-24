@@ -25,6 +25,7 @@ index_table_t init_index_table( int n_max ) {
 		fprintf( stderr, "init_index_table: [!] nie udalo sie zaalokowac pamieci na index_table->words\n" );
 		return NULL;
 	}
+	return index_table;
 }
 
 int add_word_to_index_table( index_table_t index_in, char *word_string, int n_max ) {
@@ -40,6 +41,7 @@ int add_word_to_index_table( index_table_t index_in, char *word_string, int n_ma
 		index_in->n_curr++;
 	} else {
 		index_in->words[index_in->n_curr] = init_dynamic_word( word_string, n_max );
+		if( index_in->words[index_in->n_curr] == NULL ) printf("NULL\n");
 		index_in->n_curr++;
 	}
 	return 0;

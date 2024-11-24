@@ -15,8 +15,8 @@ int main( int argc, char **argv ) {
 	index_table_t index_table = init_index_table( n_max );
 
 	int i;
-	for( i = 0; i < argc-1; i++ ) {
-		if( add_word_to_index_table( index_table, argv[i+1], n_max ) != 0 ) {
+	for( i = 1; i < argc; i++ ) {
+		if( add_word_to_index_table( index_table, argv[i], n_max ) != 0 ) {
 			fprintf( stderr, "%s: [!] blad podczas wywolania funkcji add_word_to_index_table\n", argv[0] );
 			return EXIT_FAILURE;
 		}

@@ -1,6 +1,8 @@
 #ifndef _INDEXTABLE_H_
 #define _INDEXTABLE_H_
 
+#include "dynamicword.h"
+
 typedef struct {
 	int n_max;
 	int n_curr;
