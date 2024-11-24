@@ -35,12 +35,15 @@ dynamic_word_t init_dynamic_word( char *word_string, int n_max ) {
 
 int add_to_dynamic_word( dynamic_word_t word_in, int line_number ) {
 	if ( word_in->n_curr == word_in->n_max ) {
-		int *tmp = realloc( word_in->line_numbers_vect * sizeof *word_in->line_numbers_vect );
+		int *tmp = realloc( word_in->line_numbers_vect, 2 * word_in->n_max * sizeof *word_in->line_numbers_vect );
 		if( NULL == tmp ) {
 			fprintf( stderr, "add_to_dynamic_word: [!] nie udalo sie zaalokowac pamieci na line_numbers_vect\n" );
 			return 1;
 		}
-		word_in->line_numbers_vect
+		word_in->n_max = 2 * word_in->n_max;
+		word_in->line_numbers_vect = tmp;
+		word_in->line_numbers_vect[word_in->n_curr] = line_number;
+		word_in->n_curr++;
 	} else {
 		word_in->line_numbers_vect[word_in->n_curr] = line_number;
 		word_in->n_curr++;
