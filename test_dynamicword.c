@@ -12,7 +12,7 @@ int main() {
 	printf( "\n" );
 	printf( "--- SCENARIUSZ NR 1: wywolanie funkcji inicjalizujacej\n" );
 
-	int n_max = 10;
+	int n_max = 2;
 	char *test_string = "slowo_testowe";
 	dynamic_word_t dynamic_word = init_dynamic_word( test_string, n_max );
 	
@@ -49,6 +49,8 @@ int main() {
 	
 	printf( "\n" );
 	printf( "--- SCENARIUSZ NR 2: dodawanie i wymisywanie numerow linii\n" );
+	printf( "Cel: Nie znaleziono slowa \"%s\"\n", test_string );
+	disp_dynamic_word( dynamic_word );
 	int *test_vector = malloc( 3 * n_max * sizeof(int) );
 	printf( "Wektor testowy (cel:wynik): [");
 	for( i = 0; i < 3 * n_max; i++ ){
@@ -60,6 +62,10 @@ int main() {
 		}
 	}
 	printf(" ]\n");
+	printf( "Testuj wyswietlanie:\n" );
+	disp_dynamic_word( dynamic_word );
+	
+	destroy_dynamic_word( dynamic_word );
 
 
 

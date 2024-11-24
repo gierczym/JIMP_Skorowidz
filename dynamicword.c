@@ -53,3 +53,20 @@ int add_to_dynamic_word( dynamic_word_t word_in, int line_number ) {
 	
 }
 
+void disp_dynamic_word( dynamic_word_t word_in ) {
+	if( 0 == word_in->n_curr ) {
+		printf( "Nie znaleziono slowa \"%s\"\n", word_in->word_string );
+	} else {
+		printf( "Slowo \"%s\" znaleziono %d-razy, numery linii: [", word_in->word_string, word_in->n_curr );
+		int i;
+		for( i = 0; i < word_in->n_curr; i++ ) {
+			printf( " %d", word_in->line_numbers_vect[i] );
+		}
+		printf( " ]\n" );
+	}
+}
+
+void destroy_dynamic_word( dynamic_word_t word_in ) {
+	free( word_in->line_numbers_vect );
+	free( word_in );
+}
