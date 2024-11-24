@@ -10,4 +10,10 @@ typedef struct {
 
 index_table_t init_index_table( int n_max );
 
+int add_word_to_index_table( index_table_t index_in, char *word_string, int n_max );
+
+void disp_index_table( index_table_t index_in );
+
+void destroy_index_table( index_table_t index_in );
+
 #endif

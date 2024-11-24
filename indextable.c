@@ -26,3 +26,33 @@ index_table_t init_index_table( int n_max ) {
 		return NULL;
 	}
 }
+
+int add_word_to_index_table( index_table_t index_in, char *word_string, int n_max ) {
+	if( index_in->n_curr == index_in->n_max ) {
+		dynamic_word_t *tmp = realloc( index_in->words, 2 * index_in->n_max * sizeof * index_in->words );
+		if( NULL == tmp ) {
+			fprintf( stderr, "add_word_to_index_table: [!] nie udalo sie przealokowac pamieci na index_in->words\n" );
+			return 1;
+		}
+		index_in->words = tmp;
+		index_in->n_max = 2 * index_in->n_max;
+		index_in->words[index_in->n_curr] = init_dynamic_word( word_string, n_max );
+		index_in->n_curr++;
+	} else {
+		index_in->words[index_in->n_curr] = init_dynamic_word( word_string, n_max );
+		index_in->n_curr++;
+	}
+	return 0;
+}
+
+
+void disp_index_table( index_table_t index_in ) {
+	int i;
+	for( i = 0; i < index_in->n_curr; i++ )
+		disp_dynamic_word( index_in->words[i] );
+}
+
+void destroy_index_table( index_table_t index_in ) {
+	free( index_in-> words );
+	free( index_in );
+}
