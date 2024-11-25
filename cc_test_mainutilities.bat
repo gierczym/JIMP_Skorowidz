@@ -1,0 +1,1 @@
+gcc -o test_mainutilities.exe test_mainutilities.c mainutilities.c indextable.c dynamicword.c searchwords.c
