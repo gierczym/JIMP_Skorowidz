@@ -102,3 +102,11 @@ void disp_words_list( words_list_t list ) {
 		printf( "Slowo %3d: %s\n", i+1, list->words[i] );
 	}
 }
+
+void destroy_words_list( words_list_t list ) {
+	int i;
+	for( i = 0; i < list->n_curr; i++ ) {
+		free( list->words[i] );
+	}
+	free( list );
+}

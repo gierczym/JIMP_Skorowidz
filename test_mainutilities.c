@@ -16,11 +16,6 @@ int main( int argc, char **argv ) {
 		fprintf( stderr, "%s: nie udalo sie otworzyc pliku %s\n", argv[0], argv[1] );
 		return EXIT_FAILURE;
 	}
-
-	if ( argc < 3 ) {
-		fprintf( stderr, "%s: blad: nie podano slow do wyszukania\n", argv[0] );
-		return EXIT_FAILURE;
-	}
 	
 	int n_max = 2;
 	index_table_t index_table = init_index_table( n_max );
@@ -34,6 +29,10 @@ int main( int argc, char **argv ) {
 	fill_index_table_lines( index_table, file_in );
 
 	disp_index_table( index_table );
+	
+	destroy_words_list( words_list );
+	destroy_index_table( index_table );
+	fclose( file_in );
 	
 
 	return 0;

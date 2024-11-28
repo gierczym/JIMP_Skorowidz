@@ -17,4 +17,6 @@ int fill_words_list( words_list_t list, FILE *in );
 
 void disp_words_list( words_list_t list );
 
+void destroy_words_list( words_list_t list );
+
 #endif
