@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "dynamicword.h"
 
@@ -53,12 +54,35 @@ int add_to_dynamic_word( dynamic_word_t word_in, int line_number ) {
 	
 }
 
+int ispolish( int c ) {
+	static char *str = "ąęłźćżóćśń";
+	static int i;
+	for( i = 0; i < strlen(str); i++)
+		if( c == *(str+i) )
+			return 1;
+	return 0;
+}
+
 void disp_dynamic_word( dynamic_word_t word_in ) {
 	if( 0 == word_in->n_curr ) {
 		printf( "Nie znaleziono slowa \"%s\"\n", word_in->word_string );
 	} else {
-		printf( "Slowo \"%s\" znaleziono %d-razy, numery linii: [", word_in->word_string, word_in->n_curr );
+		printf( "Slowo \"");
+		int n = 0;
+		char *word = word_in->word_string;
+		while( *word != '\0' ) {
+			printf( "%c", *word );
+			if( ispolish(*word) ) {
+				word++;
+				printf( "%c", *word ); // polskie znaki zajmuja dwa bajty
+			}
+			n++;
+			word++;
+		}
 		int i;
+		for( i = 0; i < (15-n); i++ )
+	       		printf( " " );	
+	       	printf( " znaleziono %d-razy, numery linii: [", word_in->n_curr );
 		for( i = 0; i < word_in->n_curr; i++ ) {
 			printf( " %d", word_in->line_numbers_vect[i] );
 		}

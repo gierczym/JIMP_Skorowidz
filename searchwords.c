@@ -1,8 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 #include "searchwords.h"
+
+int myisalnum( int c ) {
+	static char *str = "ąęłźćżóćśń";
+	static int i;
+	for( i = 0; i < strlen(str); i++)
+		if( c == *(str+i) )
+			return 1;
+	
+	return isalnum(c);
+}
 
 char* find_word( char *str) {
 	static char *eos = NULL;
@@ -23,7 +34,7 @@ char* find_word( char *str) {
 
 		while( curr != eos ) {
 			curr++;
-			if( isalnum(*curr) )
+			if( myisalnum(*curr) )
 				return curr;
 		}
 
@@ -31,7 +42,7 @@ char* find_word( char *str) {
 		curr = NULL;
 		int inword = 0;
 		while( *str != '\0' ) {
-			if( isalnum(*str) ) {
+			if( myisalnum(*str) ) {
 				inword = 1;
 				if( NULL == curr )
 					curr = str;

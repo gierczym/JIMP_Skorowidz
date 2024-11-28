@@ -9,7 +9,16 @@
 
 #define BUFSIZE 8192
 
-int fill_index_table( index_table_t index_in, FILE *in ) {
+int fill_index_table_words( index_table_t index_in, words_list_t list ) {
+	int i;
+	int n_max = 2;
+	for( i = 0; i < list->n_curr; i++ )
+		if( add_word_to_index_table( index_in, list->words[i], n_max ) != 0 )
+			fprintf( stderr, "fill_index_table_words: [!] blad przy wywolaniu funkcji add_to_index_table\n" );
+}
+
+
+int fill_index_table_lines( index_table_t index_in, FILE *in ) {
 
 	char buf[BUFSIZE];
 	
@@ -19,6 +28,7 @@ int fill_index_table( index_table_t index_in, FILE *in ) {
 
 	while( fgets( buf, BUFSIZE, in ) != NULL ) {
 		no_lines++;
+
 		word = find_word( buf );
 		while( word != NULL ) {
 			for( i = 0; i < index_in->n_curr; i++ ) {

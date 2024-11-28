@@ -25,14 +25,13 @@ int main( int argc, char **argv ) {
 	int n_max = 2;
 	index_table_t index_table = init_index_table( n_max );
 
-	int i;
-	for( i = 2; i < argc; i++ ) {
-		add_word_to_index_table( index_table, argv[i], n_max );
-	}
-
-	disp_index_table( index_table );
-
-	fill_index_table( index_table, file_in );
+	words_list_t words_list = init_words_list( n_max );
+	fill_words_list( words_list, file_in );
+	
+	fill_index_table_words( index_table, words_list );
+	
+	fseek( file_in, 0, SEEK_SET );
+	fill_index_table_lines( index_table, file_in );
 
 	disp_index_table( index_table );
 	

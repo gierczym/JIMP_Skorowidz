@@ -88,7 +88,8 @@ int fill_words_list( words_list_t list, FILE *in ) {
 						new_word = 0;
 				}
 				if( new_word == 1) {
-					add_to_words_list( list, word );
+					if( strcmp(word, "") != 0 )
+						add_to_words_list( list, word );
 				}
 				word = find_word( NULL );
 			}
