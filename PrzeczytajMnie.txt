@@ -1,0 +1,28 @@
+Autorzy:
+Michal Gierczynski
+Arkadiusz Swiatek
+
+Wywolanie: ./a.out dane.3
+
+Po konsultacji z prowadzacym dodalismy dodatkowy modul, dzieki ktoremu nie trzeba podawac listy slow przy wywolaniu.
+
+Modul wordslist najpierw przeszukuje plik w poszukiwaniu slow i tworzy ich unikatowy zbior.
+
+Ten zbior jest wykorzystywany do tworzenia skorowidza, ktory zawiera wszystkie slowa wystepujace w pliku.
+
+Nastepnie znacznik w pliku jest przewijany na poczatek i skorowidz jest wypelniany numerami linii
+w ktorych wystapily slowa.
+
+Potem skorowidz jest wyswietlany dwukrotnie:
+- posortowany alfabetycznie
+- posortowany po liczbie wystapien slow
+
+Pewnego komentarza wymaga funkcja wyswietlajaca slowa disp_dynamic_word w module dynamicword.
+Pewne watpliwosci moze budzic wyswietlanie slow znak po znaku. Powodem jest to, ze chcielismy aby slowa
+wyswietlane byly w sposob czytelny i estetyczny, tj. aby wszystkie zajmowaly 15 pol.
+Funkcja printf nie radzi sobie z tym zadaniem, gdy slowo zawiera polskie znaki. Jest tak dlatego,
+ze polskie znaki zajmuja dwa bajty i funkcja printf po wyswietleniu polskiego znaku mysli ze wyswietlila
+dwa znaki, przez co na koncy slowa dodaje bledna liczbe spacji.
+Dlatego wyswietlamy slowa znak po znaku i liczymy kazdy wyswietlony znak. Gdy napotkamy polski znak,
+to wyswietlamy dwa bajty, ale inkrementujemy licznik tylko raz. Stad wiemy ile dokladnie spacji musimy
+wyswietlic po slowie, zeby skorowidz wyswietlal sie rowno.

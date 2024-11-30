@@ -1,7 +1,6 @@
 #ifndef _MAINUTILITIES_H_
 #define _MAINUTILITIES_H_
 
-#include "searchwords.h"
 #include "dynamicword.h"
 #include "indextable.h"
 #include "wordslist.h"
